@@ -19,6 +19,7 @@ class Battle < Sinatra::Base
   end
 
   get "/p1_attack" do
+    $Player1.attack($Player2)
     erb :p1_attack
   end
 
