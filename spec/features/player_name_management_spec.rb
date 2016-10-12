@@ -1,4 +1,3 @@
-require "././app"
 require "spec_helper"
 
 RSpec.feature "player name management", :type => :feature do

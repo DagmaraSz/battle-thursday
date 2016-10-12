@@ -1,8 +1,14 @@
 require 'sinatra/base'
-require 'player'
+require_relative 'lib/player'
+require_relative 'lib/game'
 
 class Battle < Sinatra::Base
   enable :sessions
+
+  p "Hello3"
+  if ENV['RACK_ENV'] == 'test'
+    disable :show_exceptions
+  end
 
   get '/' do
     erb(:index)
@@ -19,7 +25,8 @@ class Battle < Sinatra::Base
   end
 
   get "/p1_attack" do
-    $Player1.attack($Player2)
+    @game = Game.new
+    @game.attack($Player2)
     erb :p1_attack
   end
 

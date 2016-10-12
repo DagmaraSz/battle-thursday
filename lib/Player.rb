@@ -1,16 +1,14 @@
 class Player
   attr_reader :name, :hp
 
+  TOTAL_HEALTH = 100
+
   def initialize(name)
     @name = name
-    @hp = 100
+    @hp = TOTAL_HEALTH
   end
 
-  def attack(player)
-    player.reduce_health
-  end
-
-  def reduce_health
-    @hp -= 10
+  def reduce_health(damage)
+    @hp -= damage
   end
 end
