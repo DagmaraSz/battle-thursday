@@ -3,10 +3,15 @@ require_relative 'lib/player'
 require_relative 'lib/game'
 
 class Battle < Sinatra::Base
-  enable :sessions
 
   if ENV['RACK_ENV'] == 'test'
     disable :show_exceptions
+  end
+
+  Game.create(Player.new, Player.new)
+
+  before do
+    @game = Game.game
   end
 
   get '/' do
@@ -14,7 +19,8 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $game = Game.new(Player.new(params[:player_one]), Player.new(params[:player_two]))
+    @game.player1.set_name(params[:player_one])
+    @game.player2.set_name(params[:player_two])
     redirect '/play'
   end
 
@@ -23,8 +29,8 @@ class Battle < Sinatra::Base
   end
 
   post "/attack" do
-    $game.set_current_player(params[:player])
-    $game.attack($game.players[1])
+    @game.set_current_player(params[:player])
+    @game.attack(@game.players[1])
     redirect '/play'
   end
 

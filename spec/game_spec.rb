@@ -1,10 +1,14 @@
 require 'game'
 
 describe Game do
-  subject(:game) {described_class.new(player1, player2)}
 
+  subject(:game) {described_class.new(player1, player2)}
   let(:player1) {double("Royston")}
   let(:player2) {double("Bob")}
+
+  it "can create an instance of itself" do
+    expect(Game.create(player1, player2)).to be_an_instance_of(Game)
+  end
 
   it "accepts 2 player instances when initialised" do
     expect(game.players[0]).to eq player1
@@ -32,6 +36,19 @@ describe Game do
       allow(player1).to receive(:reduce_health)
       expect(player1).to receive(:reduce_health)
       game.attack(player1)
+    end
+  end
+
+  context "#lose" do
+    it "sets the loser" do
+      allow(player1).to receive(:reduce_health).and_return("dead")
+      10.times{game.attack(player1)}
+      expect(game.loser).to eq player1
+    end
+    it "confirms loosing" do
+      allow(player1).to receive(:reduce_health).and_return("dead")
+      10.times{game.attack(player1)}
+      expect(game.was_lost).to eq true
     end
   end
 

@@ -1,8 +1,16 @@
 class Game
 
-  attr_reader :players, :was_attack
+  attr_reader :players, :was_attack, :loser, :was_lost, :player1, :player2
 
   DAMAGE = 10
+
+  def self.create(player1, player2)
+     @@game = Game.new(player1, player2)
+  end
+
+  def self.game
+    @@game
+  end
 
   def initialize(player1, player2)
     @player1 = player1
@@ -17,13 +25,17 @@ class Game
   end
 
   def attack(player)
-    player.reduce_health(DAMAGE)
+    lose(player) if "dead" == player.reduce_health(DAMAGE)
     @was_attack = true
   end
 
-  private
+  def lose(player)
+    @was_lost = true
+    @loser = player
+  end
 
-  attr_reader :player1, :player2
+
+  private
 
   def check_player(player_string)
     if player_string == "p1"

@@ -1,17 +1,22 @@
-<h1><%=$game.players[0].name%> Vs <%=$game.players[1].name%></h1>
-<p><%=$game.players[1].name %>'s HP: <%=$game.players[1].hp%>/100</p>
-<p><%=$game.players[0].name %>'s HP: <%=$game.players[0].hp%>/100</p>
+<h1><%=@game.player1.name%> Vs <%=@game.player2.name%></h1>
+<p><%=@game.player1.name %>'s HP: <%=@game.player1.hp%>/100</p>
+<p><%=@game.player2.name %>'s HP: <%=@game.player2.hp%>/100</p>
 <form action="/attack" method="post">
   <input type="hidden" name="player" value="p1"/>
-  <button type="submit">P1 Attacks!</button>
+  <button type="submit" id="P1 Attacks!"><%=@game.player1.name%> attacks!</button>
 </form>
 <form action="/attack" method="post">
   <input type="hidden" name="player" value="p2"/>
-  <button type="submit">P2 Attacks!</button>
+  <button type="submit" id="P2 Attacks!"><%=@game.player2.name%> attacks!</button>
 </form>
-<% if $game.was_attack %>
+<% if @game.was_attack %>
 <div>
-<p><%=$game.players[0].name%> attacks <%=$game.players[1].name%>!</p>
-<p><%=$game.players[1].name%>'s HP: <%=$game.players[1].hp%>/100</p>
+<p><%=@game.players[0].name%> attacks <%=@game.players[1].name%>!</p>
+<p><%=@game.players[1].name%>'s HP: <%=@game.players[1].hp%>/100</p>
+</div>
+<% end %>
+<% if @game.was_lost %>
+<div>
+<p><%=@game.loser.name%> LOST!</p>
 </div>
 <% end %>

@@ -1,11 +1,12 @@
 require 'player'
 
 describe Player do
-  subject(:player) {described_class.new("Royston")}
-  subject(:player2) {described_class.new("Dagmara)")}
+  subject(:player) {described_class.new}
+  let(:game) {double("game")}
 
   context "#initialise" do
-    it "has a name" do
+    it "can have a name" do
+      player.set_name("Royston")
       expect(player.name).to eq "Royston"
     end
     it "has HP" do
@@ -15,6 +16,12 @@ describe Player do
   context "attack" do
     it "can take damage" do
       expect{player.reduce_health(10)}.to change{player.hp}.by(-10)
+    end
+  end
+
+  context "lose" do
+    it "returns dead when it dies" do
+      expect(player.reduce_health(Player::TOTAL_HEALTH)).to eq "dead"
     end
   end
 

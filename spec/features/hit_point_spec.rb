@@ -10,4 +10,14 @@ RSpec.feature "hit point management", :type => :feature do
     sign_in_and_play
     expect(page).to have_text("Dagmara's HP: 100/100")
   end
+  scenario "Player 1 reaches 0HP and looses" do
+    sign_in_and_play
+    10.times{click_button "P2 Attacks!"}
+    expect(page).to have_text("Dagmara LOST!")
+  end
+  scenario "Player 2 reaches 0HP and looses" do
+    sign_in_and_play
+    10.times{click_button "P1 Attacks!"}
+    expect(page).to have_text("Royston LOST!")
+  end
 end

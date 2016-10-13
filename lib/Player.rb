@@ -3,12 +3,23 @@ class Player
 
   TOTAL_HEALTH = 100
 
-  def initialize(name)
-    @name = name
+  def initialize
     @hp = TOTAL_HEALTH
   end
 
   def reduce_health(damage)
     @hp -= damage
+    dead
   end
+
+  def set_name(name)
+    @name = name
+  end
+
+  private
+
+  def dead
+    "dead" if @hp == 0
+  end
+
 end
