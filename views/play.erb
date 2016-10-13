@@ -1,7 +1,17 @@
 <h1><%=$game.players[0].name%> Vs <%=$game.players[1].name%></h1>
 <p><%=$game.players[1].name %>'s HP: <%=$game.players[1].hp%>/100</p>
-<button>  <a href="/p1_attack">Attack!</a> </button>
-<form action="/play">
-  <input type="hidden" name="switch" value="true"/>
-  <button type="submit">Switch!</button>
+<p><%=$game.players[0].name %>'s HP: <%=$game.players[0].hp%>/100</p>
+<form action="/attack" method="post">
+  <input type="hidden" name="player" value="p1"/>
+  <button type="submit">P1 Attacks!</button>
 </form>
+<form action="/attack" method="post">
+  <input type="hidden" name="player" value="p2"/>
+  <button type="submit">P2 Attacks!</button>
+</form>
+<% if $game.was_attack %>
+<div>
+<p><%=$game.players[0].name%> attacks <%=$game.players[1].name%>!</p>
+<p><%=$game.players[1].name%>'s HP: <%=$game.players[1].hp%>/100</p>
+</div>
+<% end %>

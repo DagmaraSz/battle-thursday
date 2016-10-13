@@ -19,13 +19,13 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
-    $game.switch if params[:switch] == "true"
     erb(:play)
   end
 
-  get "/p1_attack" do
+  post "/attack" do
+    $game.set_current_player(params[:player])
     $game.attack($game.players[1])
-    erb :p1_attack
+    redirect '/play'
   end
 
   run! if app_file == $0
