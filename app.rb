@@ -8,7 +8,9 @@ class Battle < Sinatra::Base
     disable :show_exceptions
   end
 
-  Game.create(Player.new, Player.new)
+  before '/' do
+    Game.create(Player.new, Player.new)
+  end
 
   before do
     @game = Game.game

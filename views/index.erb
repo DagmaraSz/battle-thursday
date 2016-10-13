@@ -1,9 +1,15 @@
+<link rel="stylesheet" href="index.css">
+
 <form action="/names" method="post">
-  <label for="name">Player 1:</label>
-  <input type="text" id="name" name="player_one"/>
+  <div id="p1">
+    <label for="name">Player 1:</label>
+    <input type="text" id="name" name="player_one"/>
+  </div>
 
-  <label for="name2">Player 2:</label>
-  <input type="text" id="name2" name="player_two"/>
+  <div id="p2">
+    <label for="name2">Player 2:</label>
+    <input type="text" id="name2" name="player_two"/>
+  </div>
 
-  <button type="submit">Fight!</button>
+  <button id="button" type="submit"><span>Fight!</span></button>
 </form>
