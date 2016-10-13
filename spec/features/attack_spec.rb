@@ -9,6 +9,6 @@ RSpec.feature "attack management", :type => :feature do
   scenario "Reduce Player 2's hitpoints by 10" do
     sign_in_and_play
     click_link "Attack!"
-    expect(page).to have_content("Royston's HP : 90/100")
+    expect(page).to have_content("Royston's HP: 90/100")
   end
 end

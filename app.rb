@@ -5,7 +5,6 @@ require_relative 'lib/game'
 class Battle < Sinatra::Base
   enable :sessions
 
-  p "Hello3"
   if ENV['RACK_ENV'] == 'test'
     disable :show_exceptions
   end
@@ -15,18 +14,17 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $Player1 = Player.new(params[:player_one])
-    $Player2 = Player.new(params[:player_two])
+    $game = Game.new(Player.new(params[:player_one]), Player.new(params[:player_two]))
     redirect '/play'
   end
 
   get '/play' do
+    $game.switch if params[:switch] == "true"
     erb(:play)
   end
 
   get "/p1_attack" do
-    @game = Game.new
-    @game.attack($Player2)
+    $game.attack($game.players[1])
     erb :p1_attack
   end
 

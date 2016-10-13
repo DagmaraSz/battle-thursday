@@ -1,3 +1,7 @@
-<h1><%=$Player1.name%> Vs <%=$Player2.name%></h1>
-<p><%=$Player2.name %>'s HP : <%=$Player2.hp%>/100</p>
+<h1><%=$game.players[0].name%> Vs <%=$game.players[1].name%></h1>
+<p><%=$game.players[1].name %>'s HP: <%=$game.players[1].hp%>/100</p>
 <button>  <a href="/p1_attack">Attack!</a> </button>
+<form action="/play">
+  <input type="hidden" name="switch" value="true"/>
+  <button type="submit">Switch!</button>
+</form>
