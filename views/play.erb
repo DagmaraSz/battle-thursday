@@ -1,71 +1,91 @@
-<h1><%=@game.player1.name%> Vs <%=@game.player2.name%></h1>
-<p><%=@game.player1.name %>'s HP: <%=@game.player1.hp%>/100</p>
-<p><%=@game.player2.name %>'s HP: <%=@game.player2.hp%>/100</p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p1"/>
-  <input type="hidden" name="attack_type" value="attack"/>
-  <button type="submit" id="P1 Attacks!"><%=@game.player1.name%> Attack!</button>
-</form>
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p2"/>
-  <input type="hidden" name="attack_type" value="attack"/>
-  <button type="submit" id="P2 Attacks!"><%=@game.player2.name%> Attack!</button>
-</form>
+<body style="text-align:center">
+<div id="vs" class="col-sm-12">
+  <h1><%=@game.player1.name%> Vs <%=@game.player2.name%></h1>
+</div>
 
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p1"/>
-  <input type="hidden" name="attack_type" value="paralyse"/>
-  <button type="submit" id="P1 Paralyse"><%=@game.player1.name%> Paralyse!</button>
-</form>
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p2"/>
-  <input type="hidden" name="attack_type" value="paralyse"/>
-  <button type="submit" id="P2 Paralyse"><%=@game.player2.name%> Paralyse!</button>
-</form>
+<div id="score" class="col-sm-12">
+  <p><%=@game.player1.name %>'s HP: <%=@game.player1.hp%>/100</p>
+  <p><%=@game.player2.name %>'s HP: <%=@game.player2.hp%>/100</p>
+</div>
 
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p1"/>
-  <input type="hidden" name="attack_type" value="poison"/>
-  <button type="submit" id="P1 Poison"><%=@game.player1.name%> Poison!</button>
-</form>
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p2"/>
-  <input type="hidden" name="attack_type" value="poison"/>
-  <button type="submit" id="P2 Poison"><%=@game.player2.name%> Poison!</button>
-</form>
+<div class="col-sm-6">
+  <h1><%=@game.player1.name%></h1>
+  <br>
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p1"/>
+    <input type="hidden" name="attack_type" value="standard"/>
+    <button type="submit" id="P1 Attacks!">Attack!</button>
+  </form>
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p1"/>
+    <input type="hidden" name="attack_type" value="paralyse"/>
+    <button type="submit" id="P1 Paralyse">Paralyse!</button>
+  </form>
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p1"/>
+    <input type="hidden" name="attack_type" value="poison"/>
+    <button type="submit" id="P1 Poison">Poison!</button>
+  </form>
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p1"/>
+    <input type="hidden" name="attack_type" value="sleep"/>
+    <button type="submit" id="P1 Sleep">Sleep!</button>
+  </form>
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p1"/>
+    <input type="hidden" name="attack_type" value="heal"/>
+    <button type="submit" id="P1 Heal">Heal!</button>
+  </form>
+</div>
 
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p1"/>
-  <input type="hidden" name="attack_type" value="sleep"/>
-  <button type="submit" id="P1 Sleep"><%=@game.player1.name%> Sleep!</button>
-</form>
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p2"/>
-  <input type="hidden" name="attack_type" value="sleep"/>
-  <button type="submit" id="P2 Sleep"><%=@game.player2.name%> Sleep!</button>
-</form>
+<div class="col-sm-6">
+  <h1><%=@game.player2.name%></h1>
+  <br>
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p2"/>
+    <input type="hidden" name="attack_type" value="standard"/>
+    <button type="submit" id="P2 Attacks!">Attack!</button>
+  </form>
 
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p1"/>
-  <input type="hidden" name="attack_type" value="heal"/>
-  <button type="submit" id="P1 Heal"><%=@game.player1.name%> Heal!</button>
-</form>
-<form action="/attack" method="post">
-  <input type="hidden" name="player" value="p2"/>
-  <input type="hidden" name="attack_type" value="heal"/>
-  <button type="submit" id="P2 Heal"><%=@game.player2.name%> Heal!</button>
-</form>
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p2"/>
+    <input type="hidden" name="attack_type" value="paralyse"/>
+    <button type="submit" id="P2 Paralyse">Paralyse!</button>
+  </form>
 
-<% if @game.was_attack %>
-<div>
-<p><%=@game.players[0].name%> <%= @game.attack_type %> <%=@game.players[1].name%>!</p>
-<p><%=@game.players[1].name%>'s HP: <%=@game.players[1].hp%>/<%=Player::TOTAL_HEALTH%></p>
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p2"/>
+    <input type="hidden" name="attack_type" value="poison"/>
+    <button type="submit" id="P2 Poison">Poison!</button>
+  </form>
+
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p2"/>
+    <input type="hidden" name="attack_type" value="sleep"/>
+    <button type="submit" id="P2 Sleep">Sleep!</button>
+  </form>
+
+  <form action="/attack" method="post">
+    <input type="hidden" name="player" value="p2"/>
+    <input type="hidden" name="attack_type" value="heal"/>
+    <button type="submit" id="P2 Heal">Heal!</button>
+  </form>
+</div>
+
+<% if @game.was_attack%>
+<div class="col-sm-12">
+<%@game.attack_message.each do |message|%>
+  <p><%= message %></p>
+<%end%>
 </div>
 <% end %>
+
 
 <% if @game.was_lost %>
-<div>
-<p><%=@game.loser.name%> LOST!</p>
+<div class="col-sm-12">
+<h1><%=@game.loser.name%> LOST!</h1>
 </div>
 <% end %>
+</body>
