@@ -13,9 +13,13 @@ describe Player do
       expect(player.hp).to eq Player::TOTAL_HEALTH
     end
   end
+
   context "attack" do
     it "can take damage" do
       expect{player.reduce_health(10)}.to change{player.hp}.by(-10)
+    end
+    it "can heal" do
+      expect{player.increase_health(10)}.to change{player.hp}.by((10 * 0.7).round)
     end
   end
 

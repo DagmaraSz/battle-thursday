@@ -12,6 +12,10 @@ class Player
     dead
   end
 
+  def increase_health(damage)
+    @hp += (damage * 0.7).round
+  end
+
   def set_name(name)
     @name = name
   end

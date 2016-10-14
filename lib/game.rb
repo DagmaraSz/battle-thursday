@@ -24,8 +24,13 @@ class Game
     switch_to(player)
   end
 
-  def attack(player)
-    lose(player) if "dead" == player.reduce_health(DAMAGE)
+  def attack(player, attack_type)
+    case attack_type
+    when "standard"
+      standard_attack(player)
+    when "heal"
+      heal(player)
+    end
     @was_attack = true
   end
 
@@ -51,6 +56,14 @@ class Game
 
   def switch_to(player)
     @players.reverse! if player != current_player
+  end
+
+  def standard_attack(player)
+    lose(player) if "dead" == player.reduce_health(DAMAGE)
+  end
+
+  def heal(player)
+    player.increase_health(DAMAGE)
   end
 
 end

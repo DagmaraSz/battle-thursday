@@ -29,25 +29,32 @@ describe Game do
   end
 
   context "#attack" do
+    before do
+      allow(player1).to receive(:reduce_health)
+    end
+
     it "has a defined damage" do
       expect(Game::DAMAGE).not_to be nil
     end
-    it "can do attacks on another player" do
-      allow(player1).to receive(:reduce_health)
+    it "can do stanrdard attacks on another player" do
       expect(player1).to receive(:reduce_health)
-      game.attack(player1)
+      game.attack(player1, "standard")
+    end
+    it "can heal" do
+      expect(player1).to receive(:increase_health)
+      game.attack(player1, "heal")
     end
   end
 
   context "#lose" do
     it "sets the loser" do
       allow(player1).to receive(:reduce_health).and_return("dead")
-      10.times{game.attack(player1)}
+      100.times{game.attack(player1,"standard")}
       expect(game.loser).to eq player1
     end
     it "confirms loosing" do
       allow(player1).to receive(:reduce_health).and_return("dead")
-      10.times{game.attack(player1)}
+      100.times{game.attack(player1,"standard")}
       expect(game.was_lost).to eq true
     end
   end

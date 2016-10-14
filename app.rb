@@ -32,7 +32,7 @@ class Battle < Sinatra::Base
 
   post "/attack" do
     @game.set_current_player(params[:player])
-    @game.attack(@game.players[1])
+    @game.attack(@game.players[1], params[:attack_type])
     redirect '/play'
   end
 
