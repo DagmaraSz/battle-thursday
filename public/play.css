@@ -1,0 +1,18 @@
+html {
+  background: url(https://media.giphy.com/media/l0HlFeoulTYIzP3GM/giphy.gif) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+h1, h2, p {
+  color: white;
+}
+
+img {
+  width: 200px
+}
+
+.black-box {
+  background:rgba(black,0.3);
+}

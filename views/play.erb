@@ -1,77 +1,91 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="play.css">
 
-<body style="text-align:center">
+<body style="text-align:center; background-color: transparent">
 <div id="vs" class="col-sm-12">
   <h1><%=@game.player1.name%> Vs <%=@game.player2.name%></h1>
 </div>
 
 <div id="score" class="col-sm-12">
-  <p><%=@game.player1.name %>'s HP: <%=@game.player1.hp%>/100</p>
-  <p><%=@game.player2.name %>'s HP: <%=@game.player2.hp%>/100</p>
+  <h2><%=@game.player1.name %>'s HP: <%=@game.player1.hp%>/100</h2>
+  <h2><%=@game.player2.name %>'s HP: <%=@game.player2.hp%>/100</h2>
 </div>
 
-<div class="col-sm-6">
+
+<div class="col-sm-6 transparent">
   <h1><%=@game.player1.name%></h1>
   <br>
+  <img src="http://www.clipartkid.com/images/21/for-monster-eyes-clip-art-viewing-15-images-for-monster-eyes-clip-art-fc3lkg-clipart.png"/>
+  <br>
+  <div class="btn-group">
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p1"/>
     <input type="hidden" name="attack_type" value="standard"/>
-    <button type="submit" id="P1 Attacks!">Attack!</button>
+    <button type="submit" class="btn btn-danger" id="P1 Attacks!">Attack!</button>
   </form>
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p1"/>
     <input type="hidden" name="attack_type" value="paralyse"/>
-    <button type="submit" id="P1 Paralyse">Paralyse!</button>
+    <button type="submit" class="btn btn-warning" id="P1 Paralyse">Paralyse!</button>
   </form>
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p1"/>
     <input type="hidden" name="attack_type" value="poison"/>
-    <button type="submit" id="P1 Poison">Poison!</button>
+    <button type="submit" class="btn btn-success" id="P1 Poison">Poison!</button>
   </form>
+</div>
+<div class="btn-group">
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p1"/>
     <input type="hidden" name="attack_type" value="sleep"/>
-    <button type="submit" id="P1 Sleep">Sleep!</button>
+    <button type="submit" class="btn btn-primary" id="P1 Sleep">Sleep!</button>
   </form>
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p1"/>
     <input type="hidden" name="attack_type" value="heal"/>
-    <button type="submit" id="P1 Heal">Heal!</button>
+    <button type="submit" class="btn btn-info" id="P1 Heal">Heal!</button>
   </form>
+</div>
 </div>
 
 <div class="col-sm-6">
   <h1><%=@game.player2.name%></h1>
   <br>
+  <img src="http://images.clipartpanda.com/monster-clipart-cute-monster-clip-art-1024x1024.png"/>
+  <br>
+  <div class="btn-group">
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p2"/>
     <input type="hidden" name="attack_type" value="standard"/>
-    <button type="submit" id="P2 Attacks!">Attack!</button>
+    <button type="submit" class="btn btn-danger" id="P2 Attacks!">Attack!</button>
   </form>
 
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p2"/>
     <input type="hidden" name="attack_type" value="paralyse"/>
-    <button type="submit" id="P2 Paralyse">Paralyse!</button>
+    <button type="submit" class="btn btn-warning" id="P2 Paralyse">Paralyse!</button>
   </form>
 
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p2"/>
     <input type="hidden" name="attack_type" value="poison"/>
-    <button type="submit" id="P2 Poison">Poison!</button>
+    <button type="submit" class="btn btn-success" id="P2 Poison">Poison!</button>
   </form>
+</div>
 
+  <div class="btn-group">
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p2"/>
     <input type="hidden" name="attack_type" value="sleep"/>
-    <button type="submit" id="P2 Sleep">Sleep!</button>
+    <button type="submit" class="btn btn-primary" id="P2 Sleep">Sleep!</button>
   </form>
 
   <form action="/attack" method="post">
     <input type="hidden" name="player" value="p2"/>
     <input type="hidden" name="attack_type" value="heal"/>
-    <button type="submit" id="P2 Heal">Heal!</button>
+    <button type="submit" class="btn btn-info" id="P2 Heal">Heal!</button>
   </form>
+</div>
 </div>
 
 <% if @game.was_attack%>
