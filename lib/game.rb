@@ -2,7 +2,7 @@ class Game
 
   attr_reader :players, :was_attack, :loser, :was_lost, :player1, :player2
 
-  DAMAGE = 10
+  DAMAGE = rand(20)
 
   def self.create(player1, player2)
      @@game = Game.new(player1, player2)
