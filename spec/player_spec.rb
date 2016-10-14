@@ -21,6 +21,10 @@ describe Player do
     it "can heal" do
       expect{player.increase_health(10)}.to change{player.hp}.by((10 * 0.7).round)
     end
+    it "can be poisoned", focus: true do
+      player.poison
+      expect(player.poisoned).to be true
+    end
   end
 
   context "lose" do

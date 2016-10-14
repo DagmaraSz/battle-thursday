@@ -1,5 +1,5 @@
 class Player
-  attr_reader :name, :hp
+  attr_reader :name, :hp, :poisoned
 
   TOTAL_HEALTH = 100
 
@@ -20,10 +20,14 @@ class Player
     @name = name
   end
 
+  def poison
+    @poisoned = true
+  end
+
   private
 
   def dead
-    "dead" if @hp == 0
+    "dead" if @hp <= 0
   end
 
 end

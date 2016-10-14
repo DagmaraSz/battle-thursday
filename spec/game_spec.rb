@@ -31,12 +31,21 @@ describe Game do
   context "#attack" do
     before do
       allow(player1).to receive(:reduce_health)
-    end
+      allow(player2).to receive(:reduce_health)
+      allow(player1).to receive(:poison)
+      allow(player1).to receive(:poisoned).and_return(false)
 
+    end
+    it "damages the attacking player if they are poisoned", focus: true do
+      expect(player1).to receive(:reduce_health)
+      allow(player1).to receive(:poisoned).and_return(true)
+      game.attack(player2, "standard")
+
+    end
     it "has a defined damage" do
       expect(Game::DAMAGE).not_to be nil
     end
-    it "can do stanrdard attacks on another player" do
+    it "can do standard attacks on another player" do
       expect(player1).to receive(:reduce_health)
       game.attack(player1, "standard")
     end
@@ -44,9 +53,17 @@ describe Game do
       expect(player1).to receive(:increase_health)
       game.attack(player1, "heal")
     end
+    it "can poison attack another player" do
+      expect(player1).to receive(:poison)
+      allow(game).to receive_messages(chance: true)
+      game.attack(player1, "poison")
+    end
   end
 
   context "#lose" do
+    before(:each) do
+      allow(player1).to receive(:poisoned).and_return(false)
+    end
     it "sets the loser" do
       allow(player1).to receive(:reduce_health).and_return("dead")
       100.times{game.attack(player1,"standard")}
@@ -58,5 +75,4 @@ describe Game do
       expect(game.was_lost).to eq true
     end
   end
-
 end

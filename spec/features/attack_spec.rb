@@ -46,12 +46,12 @@ end
     expect(page).to have_content("#{@player2.name} paralyse #{@player1.name}!")
   end
 
-  scenario "Player 1 poisons Player 2 and gets confirmation" do
+  scenario "Player 1 poisons Player 2 and gets confirmation", focus: true do
     click_button "P1 Poison"
     expect(page).to have_content("#{@player1.name} poisons #{@player2.name}!")
   end
 
-  scenario "Player 2 poisons Player 1 and gets confirmation" do
+  scenario "Player 2 poisons Player 1 and gets confirmation", focus: true  do
     click_button "P2 Poison"
     expect(page).to have_content("#{@player2.name} poisons #{@player1.name}!")
   end

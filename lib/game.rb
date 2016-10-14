@@ -25,11 +25,14 @@ class Game
   end
 
   def attack(player, attack_type)
+    poison_damage(player1) if player1.poisoned
     case attack_type
     when "standard"
       standard_attack(player)
     when "heal"
       heal(player)
+    when "poison"
+      poison_attack(player)
     end
     @was_attack = true
   end
@@ -39,8 +42,19 @@ class Game
     @loser = player
   end
 
-
   private
+  def chance(probability)
+    rand > probability ? false : true
+  end
+
+  def poison_attack(player)
+    lose(player) if "dead" == player.reduce_health((DAMAGE * 0.6).round)
+    player.poison if chance(0.8)
+  end
+
+  def poison_damage(player)
+    player.reduce_health(4)
+  end
 
   def check_player(player_string)
     if player_string == "p1"
